@@ -4,7 +4,7 @@
   "description": "Backend for a Book sharing social network",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon src"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,14 @@
   "bugs": {
     "url": "https://github.com/armando-barrera/leeio-backend/issues"
   },
-  "homepage": "https://github.com/armando-barrera/leeio-backend#readme"
+  "homepage": "https://github.com/armando-barrera/leeio-backend#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "helmet": "^3.15.1",
+    "mongoose": "^5.4.18",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
 }
