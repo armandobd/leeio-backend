@@ -16,7 +16,7 @@ mongoose
   .connect(
     `mongodb+srv://${process.env.DB_USER}:${
       process.env.DB_PASSWORD
-    }@cluster0-s68pd.mongodb.net/${process.env.DB_NAME}?retryWrites=true`,
+    }@leeio-iflkr.mongodb.net/${process.env.DB_NAME}?retryWrites=true`,
     { useNewUrlParser: true }
   )
   .then(console.log("Connected to Database"))

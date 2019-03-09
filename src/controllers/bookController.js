@@ -1,5 +1,14 @@
+const { Book } = require("../models");
+
 exports.bookList = (req, res, next) => {
-  res.send("book list");
+  Book.find()
+    .populate("author")
+    .exec((err, listOfBooks) => {
+      if (err) {
+        res.send(err);
+      }
+      res.json({ listOfBooks });
+    });
 };
 
 exports.bookDetail = (req, res, next) => {};
