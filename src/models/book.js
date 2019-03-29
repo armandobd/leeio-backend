@@ -14,16 +14,16 @@ const BookSchema = new Schema({
   img: {
     type: String
   },
-  summmary: {
+  summary: {
     type: String,
     required: true
-  }
-  //   genre: [
-  //     {
-  //       type: Schema.ObjectId,
-  //       ref: "Genre"
-  //     }
-  //   ]
+  },
+  genre: [
+    {
+      type: Schema.ObjectId,
+      ref: "Genre"
+    }
+  ]
 });
 
 module.exports = mongoose.model("Book", BookSchema);

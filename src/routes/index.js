@@ -12,3 +12,4 @@
 // };
 
 exports.books = require("./books");
+exports.genres = require("./genres");
