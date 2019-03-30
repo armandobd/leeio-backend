@@ -9,6 +9,14 @@ const GenreSchema = new Schema({
     minlength: 3,
     maxlength: 20,
     unique: true
+    // validate: {
+    //   validator: (v, cb) => {
+    //     Genre.find({ name: v }, function(error, docs) {
+    //       cb(docs.length === 0);
+    //     });
+    //   },
+    //   message: "Genre exist"
+    // }
   }
 });
 
