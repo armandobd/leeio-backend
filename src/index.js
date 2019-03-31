@@ -8,9 +8,9 @@ app.use(express.json());
 // app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
 
-require("./startup/logging");
+require("./startup/logging")();
 require("./startup/routes")(app);
-require("./startup/databse")();
+require("./startup/database")();
 
 // const dev = app.get("env") !== "production";
 // if (!dev) {
@@ -21,6 +21,8 @@ require("./startup/databse")();
 // }
 
 app.set("port", process.env.PORT || "3000");
-app.listen(app.get("port"), () => {
+const server = app.listen(app.get("port"), () => {
   winston.info("Server on port", app.get("port"));
 });
+
+module.exports = server;

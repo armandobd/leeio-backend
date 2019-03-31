@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { validateInput, schemas } = require("../middlewares/inputValidator");
-
+const validateObjectId = require("../middlewares/validateObjectId");
 //controllers
 const genreController = require("../controllers/genreController");
 
@@ -17,7 +17,7 @@ router.patch(
   validateInput(schemas.genreSchema),
   genreController.genreUpdate
 );
-router.get("/:genreId", genreController.genreDetail);
+router.get("/:genreId", validateObjectId, genreController.genreDetail);
 router.get("/", genreController.genreList);
 
 module.exports = router;

@@ -17,9 +17,9 @@ exports.genreList = asyncMiddleware(async (req, res) => {
 });
 
 exports.genreDetail = asyncMiddleware(async (req, res) => {
-  const genre = await Genre.findById(req.params.id);
-  // if (!genre) return res.status(404).send("The genre is not on the Database");
-  if (!genre) throw new Error("The genre is not on the Database");
+  const genre = await Genre.findById(req.params.genreId);
+  if (!genre) return res.status(404).send("The genre is not on the Database");
+  // if (!genre) throw new Error("The genre is not on the Database");
   res.send(genre);
 });
 

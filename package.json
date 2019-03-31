@@ -4,7 +4,11 @@
   "description": "Backend for a Book sharing social network",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src"
+    "dev": "nodemon src",
+    "test": "jest --watchAll --verbose --coverage"
+  },
+  "jest": {
+    "testEnvironment": "node"
   },
   "repository": {
     "type": "git",
@@ -27,6 +31,8 @@
     "winston-mongodb": "^5.0.0"
   },
   "devDependencies": {
-    "nodemon": "^1.18.10"
+    "jest": "^24.5.0",
+    "nodemon": "^1.18.10",
+    "supertest": "^4.0.2"
   }
 }
