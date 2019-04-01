@@ -11,10 +11,10 @@ router.post(
   validateInput(schemas.genreSchema),
   genreController.genreCreate
 );
-router.delete("/:genreId", genreController.genreDelete);
+router.delete("/:genreId", validateObjectId, genreController.genreDelete);
 router.patch(
   "/:genreId",
-  validateInput(schemas.genreSchema),
+  [validateObjectId, validateInput(schemas.genreSchema)],
   genreController.genreUpdate
 );
 router.get("/:genreId", validateObjectId, genreController.genreDetail);

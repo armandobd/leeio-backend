@@ -25,18 +25,18 @@ exports.genreDetail = asyncMiddleware(async (req, res) => {
 
 exports.genreUpdate = asyncMiddleware(async (req, res) => {
   const genre = await Genre.findByIdAndUpdate(
-    req.params.id,
+    req.params.genreId,
     { name: req.body.name },
     { new: true }
   );
-  // if (!genre) return res.status(404).send("The genre is not on the Database");
-  if (!genre) throw new Error("The genere is not on the Database");
-  res.send(gerne);
+  if (!genre) return res.status(404).send("The genre is not on the Database");
+  // if (!genre) throw new Error("The genere is not on the Database");
+  res.send(genre);
 });
 
 exports.genreDelete = asyncMiddleware(async (req, res, next) => {
   const genre = await Genre.findByIdAndRemove(req.params.genreId);
-  // if (!genre) return res.status(404).send("The genre is not on the Database");
-  if (!genre) throw new Error("The genre is not on the Database");
+  if (!genre) return res.status(404).send("The genre is not on the Database");
+  // if (!genre) throw new Error("The genre is not on the Database");
   res.send(genre);
 });
