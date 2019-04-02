@@ -34,6 +34,28 @@ module.exports = {
         .min(3)
         .max(20)
         .required()
+    }),
+    userSchema: Joi.object().keys({
+      name: Joi.string()
+        .trim()
+        .min(1)
+        .max(50)
+        .required(),
+      email: Joi.string()
+        .trim()
+        .min(5)
+        .max(255)
+        .required()
+        .email(),
+      password: Joi.string()
+        .trim()
+        .min(5)
+        .max(1024)
+        .required()
+        // TO DO: check regex returned to user
+        .regex(
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,30})/
+        )
     })
   }
 };
