@@ -1,16 +1,15 @@
 const express = require("express");
 const winston = require("winston");
-const helmet = require("helmet");
 const morgan = require("morgan");
 
 const app = express();
 app.use(express.json());
 // app.use(express.urlencoded({ extended: true }));
-app.use(helmet());
 
 require("./startup/logging")();
 require("./startup/routes")(app);
 require("./startup/database")();
+require("./startup/prod")(app);
 
 // const dev = app.get("env") !== "production";
 // if (!dev) {

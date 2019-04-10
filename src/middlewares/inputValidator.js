@@ -22,6 +22,7 @@ module.exports = {
         .min(1)
         .max(30)
         .required(),
+      author: Joi.objectId().required(),
       summary: Joi.string()
         .min(10)
         .max(300)
@@ -56,6 +57,20 @@ module.exports = {
         .regex(
           /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,30})/
         )
+    }),
+    authorSchema: Joi.object().keys({
+      firstName: Joi.string()
+        .trim()
+        .min(1)
+        .max(50)
+        .required(),
+      familyName: Joi.string()
+        .trim()
+        .min(1)
+        .max(50)
+        .required(),
+      dateOfBirth: Joi.date(),
+      dateOfDeath: Joi.date()
     })
   }
 };

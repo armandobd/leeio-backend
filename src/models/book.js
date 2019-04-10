@@ -6,11 +6,11 @@ const BookSchema = new Schema({
     type: String,
     required: true
   },
-  //   author: {
-  //     type: Schema.ObjectId,
-  //     ref: "Author",
-  //     required: true
-  //   },
+  author: {
+    type: Schema.ObjectId,
+    ref: "Author",
+    required: true
+  },
   img: {
     type: String
   },
@@ -22,6 +22,18 @@ const BookSchema = new Schema({
     {
       type: Schema.ObjectId,
       ref: "Genre"
+    }
+  ],
+  comments: [
+    {
+      user: {
+        type: Schema.ObjectId,
+        ref: "User"
+      },
+      text: {
+        type: String,
+        maxlengtth: 1000
+      }
     }
   ]
 });
