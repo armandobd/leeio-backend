@@ -2,10 +2,8 @@ const express = require("express");
 const router = express.Router();
 const { validateInput, schemas } = require("../middlewares/inputValidator");
 
-//controllers
 const authorController = require("../controllers/authorController");
 
-//routes
 router.post(
   "/",
   validateInput(schemas.authorSchema),

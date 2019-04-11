@@ -24,6 +24,10 @@ const BookSchema = new Schema({
       ref: "Genre"
     }
   ],
+  bookInstance: {
+    type: Number,
+    default: 0
+  },
   comments: [
     {
       user: {

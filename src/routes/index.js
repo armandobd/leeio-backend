@@ -1,15 +1,6 @@
-// const express = require("express");
-// const router = express.Router();
-
-// router.get("/", (req, res) => {
-//   res.send("Hello");
-// });
-
-// module.exports = router;
-
-// module.exports = {
-//   books: require("./books.js")
-// };
-
+exports.auth = require("./auth");
+exports.authors = require("./authors");
+exports.bookInstances = require("./bookInstances");
 exports.books = require("./books");
 exports.genres = require("./genres");
+exports.users = require("./users");

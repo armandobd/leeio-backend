@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const { validateInput, schemas } = require("../middlewares/inputValidator");
-const validateObjectId = require("../middlewares/validateObjectId");
+// const { auth, admin, validateObjectId } = require("../middlewares");
 const auth = require("../middlewares/auth");
 const admin = require("../middlewares/admin");
-//controllers
+const validateObjectId = require("../middlewares/validateObjectId");
+
 const genreController = require("../controllers/genreController");
 
-//routes
 router.post(
   "/",
   [auth, validateInput(schemas.genreSchema)],

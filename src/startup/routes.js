@@ -11,7 +11,7 @@ module.exports = app => {
   app.use("/api/books", books);
   app.use("/api/genres", genres);
   app.use("/api/users", users);
-  // app.use("/api/auth", auth);
+  app.use("/api/auth", auth);
   app.use("/api/bookInstances", bookInstances);
   app.use("/api/authors", authors);
   app.use((req, res, next) => {

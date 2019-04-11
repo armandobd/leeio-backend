@@ -1,19 +1,22 @@
 const express = require("express");
 const router = express.Router();
 const { validateInput, schemas } = require("../middlewares/inputValidator");
+const { auth, admin } = require("../middlewares");
 
-//controllers
 const bookInstanceController = require("../controllers/bookInstanceController");
 
-//routes
-router.post("/", bookInstanceController.bookInstanceCreate);
-router.delete("/:bookId", bookInstanceController.bookInstanceDelete);
+router.post("/", auth, bookInstanceController.bookInstanceCreate);
+router.delete(
+  "/:bookInstanceId",
+  [auth], // admin
+  bookInstanceController.bookInstanceDelete
+);
 router.patch(
-  "/:bookId",
-  validateInput(schemas.bookSchema),
+  "/:bookInstanceId",
+  validateInput(schemas.bookInstanceSchema),
   bookInstanceController.bookInstanceUpdate
 );
-router.get("/:bookId", bookInstanceController.bookInstanceDetail);
+router.get("/:bookInstanceId", bookInstanceController.bookInstanceDetail);
 router.get("/", bookInstanceController.bookInstanceList);
 
 module.exports = router;

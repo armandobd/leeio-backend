@@ -1,8 +1,8 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
-var Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-var BookInstanceSchema = new Schema({
+const BookInstanceSchema = new Schema({
   book: { type: Schema.ObjectId, ref: "Book", required: true }, // Reference to the associated book.
   user: { type: Schema.ObjectId, ref: "User" },
   to: { type: Schema.ObjectId, ref: "User" },
