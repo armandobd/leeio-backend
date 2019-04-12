@@ -2,6 +2,7 @@ const express = require("express");
 const error = require("../middlewares/error");
 const books = require("../routes/books");
 const genres = require("../routes/genres");
+const giveBook = require("../routes/giveBook");
 const users = require("../routes/users");
 const auth = require("../routes/auth");
 const bookInstances = require("../routes/bookInstances");
@@ -10,6 +11,7 @@ const authors = require("../routes/authors");
 module.exports = app => {
   app.use("/api/books", books);
   app.use("/api/genres", genres);
+  app.use("/api/giveBooks", giveBook);
   app.use("/api/users", users);
   app.use("/api/auth", auth);
   app.use("/api/bookInstances", bookInstances);

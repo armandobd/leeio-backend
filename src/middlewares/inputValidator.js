@@ -73,8 +73,7 @@ module.exports = {
       dateOfDeath: Joi.date()
     }),
     bookInstanceSchema: Joi.object().keys({
-      book: Joi.objectId().required(),
-      user: Joi.objectId().required()
+      book: Joi.objectId().required()
     })
   }
 };

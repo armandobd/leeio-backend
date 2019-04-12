@@ -8,7 +8,7 @@ const bookInstanceController = require("../controllers/bookInstanceController");
 router.post("/", auth, bookInstanceController.bookInstanceCreate);
 router.delete(
   "/:bookInstanceId",
-  [auth], // admin
+  [auth], //admin
   bookInstanceController.bookInstanceDelete
 );
 router.patch(

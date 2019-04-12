@@ -5,7 +5,12 @@ const Schema = mongoose.Schema;
 const BookInstanceSchema = new Schema({
   book: { type: Schema.ObjectId, ref: "Book", required: true }, // Reference to the associated book.
   user: { type: Schema.ObjectId, ref: "User" },
-  to: { type: Schema.ObjectId, ref: "User" },
+  toUser: {
+    type: Schema.ObjectId,
+    ref: "User",
+    isVerified: { type: Boolean, default: false },
+    verificationToken: String
+  },
   status: {
     type: String,
     required: true,
