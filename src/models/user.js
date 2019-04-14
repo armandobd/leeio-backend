@@ -27,6 +27,10 @@ const userSchema = new mongoose.Schema(
       type: String
     },
     isAdmin: Boolean,
+    isVerified: {
+      type: Boolean,
+      default: false
+    },
     status: {
       type: Number,
       required: true,
@@ -42,6 +46,17 @@ const userSchema = new mongoose.Schema(
 userSchema.methods.generateAuthToken = function() {
   const token = jwt.sign(
     { _id: this._id, isAdmin: this.isAdmin },
+    process.env.jwtPrivateKey
+  );
+  return token;
+};
+
+userSchema.methods.generateVerificationToken = function() {
+  const token = jwt.sign(
+    {
+      _id: this._id,
+      email: this.email
+    },
     process.env.jwtPrivateKey
   );
   return token;

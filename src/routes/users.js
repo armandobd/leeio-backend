@@ -20,5 +20,7 @@ router.patch(
 router.get("/me", auth, userController.userProfile);
 router.get("/:userId", auth, userController.userDetail);
 router.get("/", auth, userController.userList);
+router.post("/confirmation/:token", userController.emailConfirmation); //TODO: check routes /api/users/confirmation
+router.post("/resend", userController.emailResend);
 
 module.exports = router;

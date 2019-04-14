@@ -15,7 +15,6 @@ router.post(
   asyncMiddleware(async (req, res) => {
     const user = await User.findById(req.user._id);
     if (!user) return res.status(400).send("Invalid email or password"); //TODO: check error
-
     const { bookInstance, newUser } = req.body;
     const { email } = await User.findById(newUser);
     await BookInstance.findByIdAndUpdate(bookInstance, { toUser: newUser });

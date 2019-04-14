@@ -21,6 +21,8 @@ router.post(
     if (!validPassword)
       return res.status(400).send("Invalid email or password");
 
+    if (!user.isVerified) return res.status(401).send("Account not verified");
+
     // const token = jwt.sign({ _id: user._id }, process.env.jwtPrivateKey); //alternative to use config
     const token = user.generateAuthToken();
     res.send(token);
