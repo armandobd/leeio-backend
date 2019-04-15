@@ -6,6 +6,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cryptoRandomString = require("crypto-random-string");
 const nodemailer = require("nodemailer");
+const handlebars = require("nodemailer-express-handlebars");
 const asyncMiddleware = require("../middlewares/async");
 
 exports.userRegister = asyncMiddleware(async (req, res) => {
@@ -31,6 +32,19 @@ exports.userRegister = asyncMiddleware(async (req, res) => {
       pass: process.env.SENDGRID_PASSWORD
     }
   });
+  transponter.use(
+    "compile",
+    handlebars({
+      viewEngine: {
+        //"express-handlebars"
+        extName: ".hbs",
+        partialsDir: "./src/templates",
+        layoutsDir: "./src/templates"
+        // defaultLayout: "email.body.hbs"
+      },
+      viewPath: "./src/templates/"
+    })
+  );
   const mailOptions = {
     from: "no-reply@leeio.com",
     to: user.email,
@@ -39,7 +53,8 @@ exports.userRegister = asyncMiddleware(async (req, res) => {
       "clik in the link to verify the account http//" +
       req.headers.host +
       "/api/users/confirmation/" +
-      verificationToken.token
+      verificationToken.token,
+    template: "verificationEmail"
   };
   const mail = await transponter.sendMail(mailOptions); //TODO: check callback function  function (err) {if (err) { return res.status(500).send({ msg: err.message }); } res.status(200).send('A verification email has been sent to ' + user.email + '.');
   if (!mail) return res.status(500).send("verification mail not send");
@@ -99,6 +114,7 @@ exports.emailResend = asyncMiddleware(async (req, res) => {
       pass: process.env.SENDGRID_PASSWORD
     }
   });
+  // TODO: use templates email
   const mailOptions = {
     from: "no-reply@leeio.com",
     to: user.email, //TODO: req.body.email?
