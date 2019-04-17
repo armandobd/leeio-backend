@@ -2,8 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { validateInput, schemas } = require("../middlewares/inputValidator");
 const { auth, validateObjectId } = require("../middlewares");
-
-const userController = require("../controllers/userController");
+const { userController } = require("../controllers");
 
 router.post(
   "/",

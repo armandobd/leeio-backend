@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { validateInput, schemas } = require("../middlewares/inputValidator");
-
-const authorController = require("../controllers/authorController");
+const { authorController } = require("../controllers");
 
 router.post(
   "/",

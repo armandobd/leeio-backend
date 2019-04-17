@@ -1,7 +1,7 @@
 const { Book } = require("../models");
 const Joi = require("joi");
 Joi.objectId = require("joi-objectid")(Joi);
-const asyncMiddleware = require("../middlewares/async");
+const { asyncMiddleware } = require("../middlewares");
 
 exports.bookCreate = asyncMiddleware(async (req, res) => {
   // if (!(req.body.genre instanceof Array)) {

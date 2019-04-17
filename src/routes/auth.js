@@ -3,9 +3,9 @@ const router = express.Router();
 const { User } = require("../models");
 const Joi = require("joi");
 Joi.objectId = require("joi-objectid")(Joi);
-const _ = require("lodash");
+// const _ = require("lodash");
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+// const jwt = require("jsonwebtoken");
 const { asyncMiddleware } = require("../middlewares");
 
 router.post(

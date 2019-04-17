@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken");
 const cryptoRandomString = require("crypto-random-string");
 const nodemailer = require("nodemailer");
 const handlebars = require("nodemailer-express-handlebars");
-const asyncMiddleware = require("../middlewares/async");
+const { asyncMiddleware } = require("../middlewares");
 
 exports.userRegister = asyncMiddleware(async (req, res) => {
   let user = await User.findOne({ email: req.body.email });

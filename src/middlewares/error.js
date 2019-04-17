@@ -9,5 +9,3 @@ module.exports = function error(error, req, res, next) {
     }
   });
 };
-
-// module.exports.error = error;

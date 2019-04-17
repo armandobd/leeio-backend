@@ -53,7 +53,7 @@ module.exports = {
         .min(5)
         .max(1024)
         .required()
-        // TO DO: check regex returned to user
+        //TODO: check regex returned to user
         .regex(
           /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,30})/
         )

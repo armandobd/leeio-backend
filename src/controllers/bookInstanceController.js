@@ -1,9 +1,7 @@
-let BookInstance = require("../models/bookInstance");
-let Book = require("../models/book");
-let User = require("../models/user");
+let { BookInstance, Book, User } = require("../models");
 const Joi = require("joi");
 Joi.objectId = require("joi-objectid")(Joi);
-const asyncMiddleware = require("../middlewares/async");
+const { asyncMiddleware } = require("../middlewares");
 
 exports.bookInstanceCreate = asyncMiddleware(async (req, res) => {
   let bookInstance = new BookInstance({

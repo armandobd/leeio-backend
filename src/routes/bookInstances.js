@@ -3,12 +3,12 @@ const router = express.Router();
 const { validateInput, schemas } = require("../middlewares/inputValidator");
 const { auth, admin } = require("../middlewares");
 
-const bookInstanceController = require("../controllers/bookInstanceController");
+const { bookInstanceController } = require("../controllers");
 
 router.post("/", auth, bookInstanceController.bookInstanceCreate);
 router.delete(
   "/:bookInstanceId",
-  [auth], //admin
+  [auth, admin],
   bookInstanceController.bookInstanceDelete
 );
 router.patch(

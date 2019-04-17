@@ -1,7 +1,7 @@
 const { Genre } = require("../models");
 const Joi = require("joi");
 Joi.objectId = require("joi-objectid")(Joi);
-const asyncMiddleware = require("../middlewares/async");
+const { asyncMiddleware } = require("../middlewares");
 
 exports.genreCreate = asyncMiddleware(async (req, res) => {
   let genre = new Genre({ name: req.body.name });

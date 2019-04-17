@@ -3,11 +3,7 @@ const router = express.Router();
 const { User, BookInstance } = require("../models");
 const Joi = require("joi");
 Joi.objectId = require("joi-objectid")(Joi);
-const _ = require("lodash");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const { asyncMiddleware } = require("../middlewares");
-const auth = require("../middlewares/auth");
+const { auth, asyncMiddleware } = require("../middlewares");
 
 router.post(
   "/",

@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { validateInput, schemas } = require("../middlewares/inputValidator");
-
-const bookController = require("../controllers/bookController");
+const { bookController } = require("../controllers");
 
 router.post("/", validateInput(schemas.bookSchema), bookController.bookCreate);
 router.delete("/:bookId", bookController.bookDelete);
