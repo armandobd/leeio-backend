@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const verificationTokenSchema = new mongoose.Schema({
+const resetPasswordSchema = new mongoose.Schema({
   user: {
     type: Schema.ObjectId,
     ref: "User",
@@ -19,4 +19,4 @@ const verificationTokenSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model("VerificationToken", verificationTokenSchema);
+module.exports = mongoose.model("ResetPassword", resetPasswordSchema);

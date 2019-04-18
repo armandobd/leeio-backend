@@ -1,4 +1,4 @@
-const { User, VerificationToken } = require("../models");
+const { User, VerificationToken, ResetPassword } = require("../models");
 const Joi = require("joi");
 Joi.objectId = require("joi-objectid")(Joi);
 const _ = require("lodash");
@@ -128,4 +128,60 @@ exports.emailResend = asyncMiddleware(async (req, res) => {
   const mail = await transponter.sendMail(mailOptions); //TODO: check callback function  function (err) {if (err) { return res.status(500).send({ msg: err.message }); } res.status(200).send('A verification email has been sent to ' + user.email + '.');
   if (!mail) return res.status(500).send("verification mail not send");
   res.status(200).send("A verification mail was send to " + user.email);
+});
+
+exports.passwordForgot = asyncMiddleware(async (req, res) => {
+  const user = await User.findOne({ email: req.body.email });
+  if (!user) return res.status(400).res("This email is not in the database");
+  const link = cryptoRandomString(100);
+  const resetPassword = new ResetPassword({
+    user: user._id,
+    link: link
+  });
+  await resetPassword.save();
+  const transponter = nodemailer.createTransport({
+    service: "Sendgrid",
+    auth: {
+      user: process.env.SENDGRID_USER,
+      pass: process.env.SENDGRID_PASSWORD
+    }
+  });
+  transponter.use(
+    "compile",
+    handlebars({
+      viewEngine: {
+        //"express-handlebars"
+        extName: ".hbs",
+        partialsDir: "./src/templates",
+        layoutsDir: "./src/templates"
+        // defaultLayout: "email.body.hbs"
+      },
+      viewPath: "./src/templates/"
+    })
+  );
+  const mailOptions = {
+    from: "no-reply@leeio.com",
+    to: user.email,
+    subject: "Reset your Password",
+    text:
+      "clik in the link to verify the account http//" +
+      req.headers.host +
+      "/api/users/reset-password/" +
+      resetPassword.link,
+    template: "forgotEmail"
+  };
+  const mail = await transponter.sendMail(mailOptions); //TODO: check callback function  function (err) {if (err) { return res.status(500).send({ msg: err.message }); } res.status(200).send('A verification email has been sent to ' + user.email + '.');
+  if (!mail) return res.status(500).send("reset password mail not send");
+  res.status(200).send("Check your email to reset your password" + user.email);
+});
+
+exports.passwordReset = asyncMiddleware(async(res,res)=>{
+  const resetPassword = await ResetPassword.findOne({token: req.body.token});
+  if(!resetPassword) return res.status(400).send("Invalid token"); //TODO: check error 
+  const userId = resetPassword.user;
+  const salt = await bcrypt.genSalt(10);
+  const newPassword = await bcrypt.hash(req.body.password, salt);
+  const user = await User.findByIdAndUpdate(userId, {password: newPassword});
+  if(!user) return res.status(404).send("The user is not in the Database");
+  res.status(200).send("Password updated, log in");
 });

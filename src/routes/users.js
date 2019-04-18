@@ -21,5 +21,7 @@ router.get("/:userId", auth, userController.userDetail);
 router.get("/", auth, userController.userList);
 router.post("/confirmation/:token", userController.emailConfirmation); //TODO: check routes /api/users/confirmation
 router.post("/resend", userController.emailResend);
+router.post("/forgot-password", userController.passwordForgot);
+router.post("/reset-password", userController.passwordReset);
 
 module.exports = router;
