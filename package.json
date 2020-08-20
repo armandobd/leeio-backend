@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/armando-barrera/leeio-backend#readme",
   "dependencies": {
-    "bcrypt": "^3.0.5",
+    "bcrypt": "^5.0.0",
     "compression": "^1.7.4",
     "crypto-random-string": "^2.0.0",
     "express": "^4.16.4",
